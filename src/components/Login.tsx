@@ -39,7 +39,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
 
 export const Login = () => {
 
-    const [state, dispatch] = useReducer(authReducer, initialState)
+    const [{ validando, token, nombre }, dispatch] = useReducer(authReducer, initialState)
 
     useEffect(() => {
         setTimeout(() => {
@@ -48,7 +48,7 @@ export const Login = () => {
     }, [])
 
 
-    if (state.validando) {
+    if (validando) {
         return (
             <>
                 <h3>Login</h3>
@@ -62,26 +62,31 @@ export const Login = () => {
     return (
         <>
             <h3>Login</h3>
-            <div className="alert alert-info">
-                validando...
-            </div>
 
+            {
+                (token)
+                    ? <div className="alert alert-success">Autenticado como : {nombre}</div>
+                    : <div className="alert alert-danger"> No autenticado </div>
 
-            <div className="alert alert-danger">
-                No autenticado
-            </div>
+            }
 
-            <div className="alert alert-success">
-                Autenticado
-            </div>
+            {
+                (token)
+                    ? (
+                        <button className="btn btn-danger">
+                            About
+                        </button>
 
-            <button className="btn btn-primary">
-                Login
-            </button>
-            &nbsp;
-            <button className="btn btn-danger">
-                About
-            </button>
+                    )
+                    : (
+                        <button className="btn btn-primary">
+                            Login
+                        </button>
+
+                    )
+
+            }
+
         </>
     )
 }
