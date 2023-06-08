@@ -76,6 +76,12 @@ export const Login = () => {
         )
     }
 
+    const logout = () => {
+        dispatch({
+            type: 'logout',
+        })
+    }
+
     if (validando) {
         return (
             <>
@@ -101,8 +107,8 @@ export const Login = () => {
             {
                 (token)
                     ? (
-                        <button className="btn btn-danger">
-                            About
+                        <button className="btn btn-danger" onClick={logout}>
+                            Logout
                         </button>
 
                     )
@@ -118,3 +124,6 @@ export const Login = () => {
         </>
     )
 }
+
+
+// tarea : Una nueva funcion que se llame About que se dispare la accion de About y que nos aseguremos que aparezca el cuadro rojo en donde diga que no esta autenticado  
