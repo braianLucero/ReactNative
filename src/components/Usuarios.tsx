@@ -1,5 +1,16 @@
+import { useEffect } from 'react';
+import { reqResApi } from '../api/reqRes';
 
 export const Usuarios = () => {
+
+    useEffect(() => {
+        reqResApi.get('/users')
+            .then(res => {
+                console.log(res.data.data);
+            })
+            .catch(console.log);
+    }, [])
+
     return (
         <>
             <h3>Usuarios:</h3>
