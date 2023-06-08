@@ -1,3 +1,4 @@
+import { type } from "@testing-library/user-event/dist/type";
 import { useEffect, useReducer } from "react"
 
 interface AuthState {
@@ -16,9 +17,15 @@ const initialState: AuthState = {
 
 }
 
-type AuthAction = {
-    type: "logout"
-};
+type LoginPayload = {
+    username: string;
+    nombre: string;
+}
+
+
+type AuthAction =
+    | { type: "logout" }
+    | { type: 'login ', payload: LoginPayload };
 
 
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
@@ -30,9 +37,19 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
                 nombre: "",
                 username: ""
             }
+
+        case "login ":
+            const { nombre, username } = action.payload;
+            return {
+                validando: false,
+                token: 'queOnda123',
+                nombre,
+                username
+            }
         default:
             return state;
     }
+
 
 }
 
@@ -47,6 +64,17 @@ export const Login = () => {
         }, 1500);
     }, [])
 
+    const login = () => {
+        dispatch(
+            {
+                type: "login ",
+                payload: {
+                    nombre: 'braian ',
+                    username: 'Striker'
+                }
+            }
+        )
+    }
 
     if (validando) {
         return (
@@ -79,7 +107,7 @@ export const Login = () => {
 
                     )
                     : (
-                        <button className="btn btn-primary">
+                        <button className="btn btn-primary" onClick={login}>
                             Login
                         </button>
 
