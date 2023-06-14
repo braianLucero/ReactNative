@@ -29,7 +29,7 @@ export const Usuarios = () => {
             alert('no hay mas registros ')
         }
 
-        setUsuarios(res.data.data);
+        setUsuarios(res.data.data)
     }
 
 
