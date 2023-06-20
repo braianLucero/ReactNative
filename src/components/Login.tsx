@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react"
+import { useEffect, useReducer, useRef } from 'react';
 
 interface AuthState {
     validando: boolean;
@@ -123,6 +123,7 @@ export const Login = () => {
         </>
     )
 }
+
 
 
 // tarea : Una nueva funcion que se llame About que se dispare la accion de About y que nos aseguremos que aparezca el cuadro rojo en donde diga que no esta autenticado  
