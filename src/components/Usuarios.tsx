@@ -4,7 +4,8 @@ import { Usuario } from '../interfaces/reqRes';
 
 export const Usuarios = () => {
 
-    const { cargarUsuarios, usuarios } = useUsuario();
+    const { usuarios, paginaSiguiente, paginaAnterior } = useUsuario();
+
 
 
     const renderItem = (usuario: Usuario) => {
@@ -39,11 +40,11 @@ export const Usuarios = () => {
                 </tbody>
             </table>
 
-            <button className='btn btn-primary' onClick={cargarUsuarios}>
+            <button className='btn btn-primary' onClick={paginaSiguiente}>
                 siguiente
             </button>
             &nbsp;
-            <button className='btn btn-primary' onClick={cargarUsuarios}>
+            <button className='btn btn-primary' onClick={paginaAnterior}>
                 Anteriores
             </button>
 
